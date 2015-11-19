@@ -1,7 +1,6 @@
 var ReadableLinks = require("../lib/link_readability").ReadableLinks,
     assert = require("assert"),
     fs = require('fs'),
-    Readability = require("readabilitySAX").Readability,
     Parser = require("htmlparser2/lib/Parser.js");
 
 

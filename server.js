@@ -1,18 +1,28 @@
 var express = require("express"),
     app = express(),
-    RssGenerator = require("./lib/rss_generator").RssGenerator;
+    RssGenerator = require("./lib/rss_generator").RssGenerator,
+    EventEmitter = require('events');
 
 app.use(express.logger());
+
+/* Redirects can cause lots of callbacks to be registered
+   however, I am not going to delve into the Readability & request modules to fix that now */
+EventEmitter.defaultMaxListeners = 100;
 
 app.get('/', function(req, res) {
   var rss = new RssGenerator();
 
-  rss.feeds(function(feeds){
+  rss.feeds(function(feeds, err){
     res.charset = 'UTF-8';
-    res.header('Content-Type', 'text/xml');
-    res.header('Last-Modified', new Date().toString());
-    res.header('Cache-Control', 'no-cache');
-    res.send(feeds);
+    if (err) {
+      console.error("Feed error: " + err);
+      res.send(500, "Could not retrieve feed: " + err);
+    } else {
+      res.header('Content-Type', 'text/xml');
+      res.header('Last-Modified', new Date().toString());
+      res.header('Cache-Control', 'no-cache');
+      res.send(feeds);
+    }
   });
 });
 
