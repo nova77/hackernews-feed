@@ -5,6 +5,8 @@ var express = require("express"),
 
 app.use(express.logger());
 
+require('console-stamp')(console, 'HH:MM:ss.l');
+
 /* Redirects can cause lots of callbacks to be registered
    however, I am not going to delve into the Readability & request modules to fix that now */
 EventEmitter.defaultMaxListeners = 100;
