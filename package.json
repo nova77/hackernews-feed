@@ -1,17 +1,17 @@
 {
   "name": "hackernews-feed",
   "version": "0.0.1",
-  "description": "a minimal hacker news feed provider, heroku friendly",
+  "description": "a minimal hacker news feed provider, tt-rss friendly",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/mattheworiordan/hackernews-feed.git"
+    "url": "git://github.com/nova77/hackernews-feed.git"
   },
   "engines": {
-    "node": "4.2.2"
+    "node": "~4.2.2"
   },
   "keywords": [
     "hackernews",
@@ -22,8 +22,9 @@
   "license": "BSD",
   "dependencies": {
     "cheerio": "~0.19.0",
+    "feedparser": "~1.1.0",
     "request": "~2.66.0",
-    "node-readability": "~2.0.0",
+    "node-readability": ">=2.2.0",
     "underscore": "~1.4.4",
     "redis": "~2.3.1",
     "async": "~1.5.0",
@@ -33,6 +34,6 @@
   "devDependencies": {
     "should": "~1.2.2",
     "mocha": "~2.3.4",
-    "htmlparser2": "~3.8",
+    "htmlparser2": "~3.8"
   }
 }
